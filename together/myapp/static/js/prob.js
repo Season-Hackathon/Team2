@@ -31,7 +31,10 @@ console.log(quizAnswer);
 //7. 10번 문제도 정답일 시에 태극기 count +=1 하고 정답 modal창 생성
 var c;
 
-
+//태극기 카운트 위해
+var flagcnt = 0;
+//문제 숫자 세기
+var qcount = 1;
 
 
 

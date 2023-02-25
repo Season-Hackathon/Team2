@@ -68,27 +68,33 @@
             {%for univ in venues%}
             <div class="school-univ">
                 <img class="logo-img" src="{{univ.img.url}}" width="55", height="55">
-                <button class="school-univ-name-box">
-                    <img class="school-univ-image" src="https://ifh.cc/g/SmqXJo.png"> 
-                    <div class="school-univ-name">{{univ.univ}}</div> 
-                </button>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="school-univ-name-box" value="{{univ.univ}}" name="univ_name">
+                        <img class="school-univ-image" src="https://ifh.cc/g/SmqXJo.png"> 
+                        <div class="school-univ-name">{{univ.univ}}</div> 
+                    </button>
+                </form>
             </div>
             {%endfor%}
         </div>
         <!-- 페이징처리 시작 -->
     <div id="paging">
-        <div class="pagination justify-content-center" style="margin-top: 2rem;">
+        <div class="pagination justify-content-center" style="margin-top: 5rem;">
+
             <!-- 이전페이지 -->
             {% if venues.has_previous %}
-            <div class="page-item">
+            <div class="page-item" style="float: left; width: 33%; " >
                 <a class="page-link" href="?&page={{ venues.previous_page_number }}"><img src="https://ifh.cc/g/3A8S2K.png"></a>
                 <!-- href로 뎁스 설정 -->
             </div>
+
             {% else %}
-            <div class="page-item disabled">
+            <div class="page-item disabled" style="float: left; width: 33%;">
                 <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img src="https://ifh.cc/g/3A8S2K.png"></a>
             </div>
             {% endif %}
+
             <!-- 페이지리스트 -->
             {% for page_number in venues.paginator.page_range %}
             {% if page_number >= venues.number|add:-5 and page_number <= venues.number|add:5 %}
@@ -125,7 +131,7 @@
 
 
     <!-- modal -->
-    <div class="modal hidden">
+    <!-- <div class="modal hidden">
         <div class="univ-modal-bg"></div>
         <div class="univ-modal-box">
             <img class="modal-quiz-img" src="https://ifh.cc/g/rh5sfT.png">
@@ -142,6 +148,6 @@
         }
         document.querySelector(".school-univ-name-box").addEventListener("click",open);
         document.querySelector(".univ-modal-bg").addEventListener("click",close);
-    </script>
+    </script> -->
 </body>
 </html>

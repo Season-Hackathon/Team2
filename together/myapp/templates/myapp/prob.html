@@ -40,10 +40,9 @@
         </div>
         <div class="answerbox-wrapper">
          <a id="quizAnswer">{{quiz.ans}}</a>
-          <button onclick="clickCount()" class="answerbtn" id="answerbtn1" value="1">
+          <button onclick="clickCount()"  class="answerbtn" id="answerbtn1" value="1">
             <img src="https://ifh.cc/g/soFXmf.png" class="korea-btn" />
             <p class="answercontent" id="answer1">{{quiz.option1}}</p>
-          </button>
           <button onclick="clickCount()"  class="answerbtn" id="answerbtn2" value="2">
             <img src="https://ifh.cc/g/soFXmf.png" class="korea-btn" />
             <p class="answercontent" id="answer2">{{quiz.option2}}</p>
@@ -108,7 +107,17 @@
               </div>
 
 
-              <button class="nextquiz-btn">다음 문제</button>
+              <button class="nextquiz-btn">
+                {% if venues.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?&page={{ venues.next_page_number }}">다음 문제 풀기</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음 문제 풀기</a>
+                </li>
+                {% endif %}
+              </button>
             </div>
           </div>
           <!-- 시간초과 모달창 -->
